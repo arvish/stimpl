@@ -273,6 +273,8 @@ def evaluate(expression: Expr, state: State) -> Tuple[Optional[Any], Type, State
                     result = True
                 case _:
                     raise InterpTypeError(f"Cannot perform < on {left_type} type.")
+                
+            return (result, Boolean(), new_state)
 
         case Gt(left=left, right=right):
             left_value, left_type, new_state = evaluate(left, state)
@@ -289,6 +291,7 @@ def evaluate(expression: Expr, state: State) -> Tuple[Optional[Any], Type, State
                     result = False
                 case _:
                     raise InterpTypeError(f"Cannot perform > on {left_type} type.")
+                
             return (result, Boolean(), new_state)
 
         case Gte(left=left, right=right):
